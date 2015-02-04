@@ -32,4 +32,8 @@ describe DockingStation  do
 		expect(station.available_bikes).to eq([working_bike])
 	end
 
+	it 'should not release a bike that isn\'t there' do
+		expect{station.release(bike)}.to raise_error(RuntimeError, 'No bikes available')
+	end
+
 end
