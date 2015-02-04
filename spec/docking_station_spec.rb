@@ -11,9 +11,9 @@ describe DockingStation  do
 		expect{station.dock(bike)}.to change{station.bike_count}.by 1
 	end
 
-	it 'should release a bike' do
-		station.dock(bike)
-		expect{station.release(bike)}.to change{station.bike_count}.by -1
+	it 'should release a working bike' do
+		station.dock(working_bike)
+		expect{station.release(working_bike)}.to change{station.bike_count}.by -1
 	end
 
 	it 'should know when it\'s full' do
@@ -34,6 +34,11 @@ describe DockingStation  do
 
 	it 'should not release a bike that isn\'t there' do
 		expect{station.release(bike)}.to raise_error(RuntimeError, 'No bikes available')
+	end
+
+	it 'should provide the list of unavailable bikes' do
+		station.dock(broken_bike)
+		expect(station.unavailable_bikes).to eq([broken_bike])
 	end
 
 end
