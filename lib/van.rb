@@ -10,6 +10,6 @@ class Van
 		end
 	end
 
-
-
+	
+	
 end
